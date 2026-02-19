@@ -5,35 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AV Brothers Traders</title>
   <style>
-    body {font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8;}
-    header {background: #d81b60; color: white; padding: 20px; text-align: center;}
-    header h1 {margin: 0;}
-    .hero {background: linear-gradient(to right, #ff4081, #ffca28); color: white; text-align: center; padding: 40px 20px;}
-    .container {padding: 40px 20px; max-width: 1100px; margin: auto;}
-    .products {display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;}
-    .card {background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 15px; text-align: center;}
-    .card img {width: 100%; border-radius: 10px;}
-    .price {color: #d81b60; font-weight: bold; font-size: 18px;}
-    button {background: #d81b60; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer;}
-    button:hover {background: #ad1457;}
-    .order-form input, .order-form textarea {width: 100%; padding: 10px; margin: 10px 0; border-radius: 6px; border: 1px solid #ccc;}
-    footer {background: #333; color: white; text-align: center; padding: 15px; margin-top: 40px;}
-    .center {text-align:center;}
-  </style>
+html { scroll-behavior: smooth; }
+
+#loader {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:5000;
+}
+
+.loader-circle {
+  width:60px;
+  height:60px;
+  border:5px solid gold;
+  border-top:5px solid transparent;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
+}
+
+body {
+  margin:0;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg,#1a1a1a,#2c2c2c);
+  color:#f5f5f5;
+}
+
+header {
+  background: linear-gradient(90deg,#000,#1f1f1f);
+  padding:20px;
+  text-align:center;
+  font-size:28px;
+  letter-spacing:2px;
+  font-weight:bold;
+  border-bottom:1px solid gold;
+}
+
+.container {
+  padding:40px 20px;
+}
+
+.products {
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.card {
+  background: #111;
+  border-radius:20px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(255,215,0,0.15);
+  transition:0.4s;
+  border:1px solid rgba(255,215,0,0.2);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow:0 15px 35px rgba(255,215,0,0.4);
+}
+
+.card img {
+  border-radius:15px;
+  margin-bottom:10px;
+}
+
+button {
+  background: linear-gradient(45deg,gold,#d4af37);
+  border:none;
+  padding:8px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+  margin-top:5px;
+}
+
+button:hover {
+  opacity:0.85;
+}
+
+h2 {
+  text-align:center;
+  margin-bottom:30px;
+  font-size:26px;
+  color:gold;
+}
+
+footer {
+  text-align:center;
+  padding:20px;
+  background:#000;
+  border-top:1px solid gold;
+  margin-top:40px;
+}
+</style>
 </head>
 <body>
 
+<div id="loader">
+  <div class="loader-circle"></div>
+</div>
+
 <header>
-  <h1>AV Brothers Traders</h1>
-  <p>Trendy Jewellery & Accessories Store</p>
+  AV Brothers Traders
 </header>
+
+<section style="height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1617038220319-276d3cfab638') center/cover no-repeat;">
+  <div>
+    <h1 style="font-size:48px;color:gold;">Luxury Jewellery Collection</h1>
+    <p style="font-size:20px;margin:20px 0;">Elegance That Defines You</p>
+    <button onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+  </div>
+</section>
 
 <section class="hero">
   <h2>Best Quality | Affordable Prices | Fast Delivery</h2>
-  <p style="margin-top:15px; font-weight:bold;">
-  Free Delivery Above ₹999 | Cash On Delivery Available
-</p>
-
+  <p style="margin-top:15px; font-weight:bold; font-size:18px; background:white; color:#d81b60; display:inline-block; padding:8px 15px; border-radius:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    🚚 Free Delivery Above ₹999 | 💵 Cash On Delivery Available
+  </p>
 </section>
 
 <section class="container">
@@ -99,12 +197,45 @@
   <p>© 2026 AV Brothers Traders. All Rights Reserved.</p>
 </footer>
 
-<script>
-function orderProduct(product) {
-  document.getElementById('details').value = product;
-  window.scrollTo(0, document.body.scrollHeight);
-}
+<!-- Instagram Section -->
+<section class="container center">
+  <h2>Follow Us On Instagram</h2>
+  <p>@avbrotherstraders</p>
+  <a href="https://instagram.com" target="_blank">
+    <button>Visit Instagram</button>
+  </a>
+</section>
 
+<!-- Banner Slider -->
+<section class="container">
+  <div class="slider" style="position:relative; max-width:100%; overflow:hidden; border-radius:15px;">
+    <img id="slideImage" src="https://via.placeholder.com/1000x300/ff4081/ffffff?text=Big+Sale+Up+To+50%25+OFF" style="width:100%; border-radius:15px;">
+  </div>
+</section>
+
+<!-- Order Success Popup -->
+<div id="popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:30px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.3); text-align:center; z-index:1000;">
+  <h3>✅ Order Submitted Successfully!</h3>
+  <p>We will contact you soon.</p>
+  <button onclick="closePopup()">OK</button>
+</div>
+
+<script>
+
+// Image Slider
+const images = [
+  "https://via.placeholder.com/1000x300/ff4081/ffffff?text=Big+Sale+Up+To+50%25+OFF",
+  "https://via.placeholder.com/1000x300/d81b60/ffffff?text=New+Jewellery+Collection",
+  "https://via.placeholder.com/1000x300/ffca28/000000?text=Festival+Special+Offers"
+];
+
+let index = 0;
+setInterval(() => {
+  index = (index + 1) % images.length;
+  document.getElementById("slideImage").src = images[index];
+}, 3000);
+
+// Modified Submit Order
 function submitOrder() {
   var name = document.getElementById('name').value;
   var phone = document.getElementById('phone').value;
@@ -115,11 +246,167 @@ function submitOrder() {
     return;
   }
 
+  document.getElementById('popup').style.display = 'block';
+
   var message = `Hello AV Brothers Traders,%0AName: ${name}%0APhone: ${phone}%0AOrder: ${details}`;
-  window.open(`https://wa.me/7248906682?text=${message}`, '_blank');
+  window.open(`https://wa.me/919999999999?text=${message}`, '_blank');
 }
+
+function closePopup() {
+  document.getElementById('popup').style.display = 'none';
+}
+
+
+
+// Simple UPI Payment Option
+function showUPI() {
+  let total = 0;
+  cart.forEach(item => total += parseInt(item.price));
+  if(total === 0){ alert('Cart is empty'); return; }
+
+  document.getElementById('upiSection').style.display = 'block';
+  document.getElementById('upiAmount').innerText = total;
+}
+
+</script>
+
+<!-- UPI Payment Section -->
+<div id="upiSection" style="display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:white;padding:25px;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,0.4);z-index:2000;text-align:center;">
+  <h3>Scan & Pay via UPI</h3>
+  <p>Total Amount: ₹ <span id="upiAmount"></span></p>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=example@upi" style="margin:15px 0;">
+  <p>UPI ID: example@upi</p>
+  <button onclick="document.getElementById('upiSection').style.display='none'">Close</button>
+</div>
+
+
+<!-- Admin Panel -->
+<section class="container" style="margin-top:50px;">
+  <h2>Admin Panel</h2>
+  <div id="adminLogin">
+    <input type="password" id="adminPass" placeholder="Enter Admin Password">
+    <button onclick="checkAdmin()">Login</button>
+  </div>
+
+  <div id="adminArea" style="display:none; margin-top:20px;">
+    <h3>Add New Product</h3>
+    <input type="text" id="productName" placeholder="Product Name">
+    <input type="text" id="productPrice" placeholder="Product Price">
+    <input type="text" id="productImage" placeholder="Image URL">
+    <button onclick="addProduct()">Add Product</button>
+  </div>
+</section>
+
+<script>
+
+let adminPassword = "admin123";
+let products = JSON.parse(localStorage.getItem('products')) || [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function saveProducts() {
+  localStorage.setItem('products', JSON.stringify(products));
+}
+
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function renderProducts() {
+  const container = document.querySelector('.products');
+  container.innerHTML = '';
+  products.forEach((p, index) => {
+    container.innerHTML += `
+      <div class="card">
+        <img src="${p.image}" style="width:100%; border-radius:10px;">
+        <h3>${p.name}</h3>
+        <p>₹ ${p.price}</p>
+        <button onclick="addToCart(${index})">Add to Cart</button>
+        <button onclick="deleteProduct(${index})" style="background:red;margin-top:5px;">Delete</button>
+      </div>
+    `;
+  });
+}
+
+function checkAdmin() {
+  var pass = document.getElementById('adminPass').value;
+  if(pass === adminPassword) {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminArea').style.display = 'block';
+  } else {
+    alert("Wrong Password");
+  }
+}
+
+function addProduct() {
+  var name = document.getElementById('productName').value;
+  var price = document.getElementById('productPrice').value;
+  var image = document.getElementById('productImage').value;
+
+  if(name === '' || price === '' || image === '') {
+    alert("Fill all fields");
+    return;
+  }
+
+  products.push({name, price, image});
+  saveProducts();
+  function updateCartCount() {
+  let count = cart.length;
+  let counter = document.getElementById('cartCount');
+  if(counter) counter.innerText = count;
+}
+
+function toggleCart() {
+  let cartBox = document.getElementById('cartBox');
+  cartBox.style.display = cartBox.style.display === 'none' ? 'block' : 'none';
+  renderCartItems();
+}
+
+function renderCartItems() {
+  let cartItemsDiv = document.getElementById('cartItems');
+  cartItemsDiv.innerHTML = '';
+  let total = 0;
+  cart.forEach((item, index) => {
+    total += parseInt(item.price);
+    cartItemsDiv.innerHTML += `
+      <p>${item.name} - ₹${item.price} 
+      <button onclick="removeFromCart(${index})" style="background:red;color:white;border:none;padding:3px 8px;border-radius:5px;">X</button></p>
+    `;
+  });
+  cartItemsDiv.innerHTML += `<h4>Total: ₹${total}</h4>`;
+}
+
+function removeFromCart(index) {
+  cart.splice(index,1);
+  saveCart();
+  updateCartCount();
+  renderCartItems();
+}
+
+// Add Cart Icon HTML dynamically
+window.onload = function() {
+  setTimeout(function(){
+    document.getElementById('loader').style.display='none';
+  },1000);() {
+  const header = document.querySelector('header');
+  header.innerHTML += `
+    <div style="position:absolute;top:20px;right:20px;cursor:pointer;" onclick="toggleCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </div>
+  `;
+
+  document.body.innerHTML += `
+    <div id="cartBox" style="display:none;position:fixed;right:20px;top:80px;background:white;padding:20px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.3);width:300px;z-index:1000;">
+      <h3>Your Cart</h3>
+      <div id="cartItems"></div>
+      <button onclick="viewCart()" style="width:100%;margin-top:10px;">Checkout via WhatsApp</button>
+    </div>
+  `;
+
+  renderProducts();
+  updateCartCount();
+};
+
 </script>
 
 </body>
 </html>
-

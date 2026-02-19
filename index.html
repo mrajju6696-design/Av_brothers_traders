@@ -100,8 +100,15 @@ margin:5px;
 </div>
 
 <script>
-let password="admin123";
-let products=[];
+
+let password = "admin123";
+
+// Load products from localStorage
+let products = JSON.parse(localStorage.getItem("products")) || [];
+
+function saveProducts(){
+localStorage.setItem("products", JSON.stringify(products));
+}
 
 function scrollToProducts(){
 document.getElementById("productContainer").scrollIntoView({behavior:"smooth"});
@@ -128,6 +135,7 @@ return;
 }
 
 products.push({name,price,image});
+saveProducts();
 renderProducts();
 
 document.getElementById("name").value="";
@@ -138,17 +146,32 @@ document.getElementById("image").value="";
 function renderProducts(){
 let container=document.getElementById("productContainer");
 container.innerHTML="";
-products.forEach(p=>{
+products.forEach((p,index)=>{
 container.innerHTML+=`
 <div class="card">
 <img src="${p.image}">
 <h3>${p.name}</h3>
 <p>₹ ${p.price}</p>
+<button onclick="deleteProduct(${index})">Delete</button>
 </div>
 `;
 });
 }
+
+function deleteProduct(index){
+products.splice(index,1);
+saveProducts();
+renderProducts();
+}
+
+// Auto load when page opens
+renderProducts();
+
+</script>
+
+  
 </script>
 
 </body>
 </html>
+

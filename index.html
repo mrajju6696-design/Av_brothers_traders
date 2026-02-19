@@ -101,13 +101,20 @@ margin:5px;
 
 <script>
 
+<script>
+
 let password = "admin123";
 
-// Load products from localStorage
+// Load saved data
 let products = JSON.parse(localStorage.getItem("products")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function saveProducts(){
 localStorage.setItem("products", JSON.stringify(products));
+}
+
+function saveCart(){
+localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 function scrollToProducts(){
@@ -152,6 +159,7 @@ container.innerHTML+=`
 <img src="${p.image}">
 <h3>${p.name}</h3>
 <p>₹ ${p.price}</p>
+<button onclick="addToCart(${index})">Add to Cart</button>
 <button onclick="deleteProduct(${index})">Delete</button>
 </div>
 `;
@@ -164,14 +172,37 @@ saveProducts();
 renderProducts();
 }
 
-// Auto load when page opens
+function addToCart(index){
+cart.push(products[index]);
+saveCart();
+alert("Added to Cart");
+}
+
+function viewCart(){
+if(cart.length===0){
+alert("Cart is empty");
+return;
+}
+
+let total=0;
+let message="Order Details:%0A";
+
+cart.forEach(item=>{
+total+=parseInt(item.price);
+message+=item.name+" - ₹"+item.price+"%0A";
+});
+
+message+="Total: ₹"+total;
+
+window.open("https://wa.me/91XXXXXXXXXX?text="+message,"_blank");
+}
+
+// Auto load
 renderProducts();
 
 </script>
 
-  
-</script>
-
 </body>
 </html>
+
 

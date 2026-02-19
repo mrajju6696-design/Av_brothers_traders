@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AV Brothers Traders</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8;}
+    header {background: #d81b60; color: white; padding: 20px; text-align: center;}
+    header h1 {margin: 0;}
+    .hero {background: linear-gradient(to right, #ff4081, #ffca28); color: white; text-align: center; padding: 40px 20px;}
+    .container {padding: 40px 20px; max-width: 1100px; margin: auto;}
+    .products {display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;}
+    .card {background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 15px; text-align: center;}
+    .card img {width: 100%; border-radius: 10px;}
+    .price {color: #d81b60; font-weight: bold; font-size: 18px;}
+    button {background: #d81b60; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer;}
+    button:hover {background: #ad1457;}
+    .order-form input, .order-form textarea {width: 100%; padding: 10px; margin: 10px 0; border-radius: 6px; border: 1px solid #ccc;}
+    footer {background: #333; color: white; text-align: center; padding: 15px; margin-top: 40px;}
+    .center {text-align:center;}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>AV Brothers Traders</h1>
+  <p>Trendy Jewellery & Accessories Store</p>
+</header>
+
+<section class="hero">
+  <h2>Best Quality | Affordable Prices | Fast Delivery</h2>
+</section>
+
+<section class="container">
+  <h2 class="center">Our Products</h2>
+  <div class="products">
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Necklace">
+      <h3>Necklace Collection</h3>
+      <p class="price">₹299</p>
+      <button onclick="orderProduct('Necklace Collection')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Jewellery Set">
+      <h3>Jewellery Sets</h3>
+      <p class="price">₹599</p>
+      <button onclick="orderProduct('Jewellery Sets')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Jhumka">
+      <h3>Jhumka Collection</h3>
+      <p class="price">₹199</p>
+      <button onclick="orderProduct('Jhumka Collection')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Purse">
+      <h3>Purse Collection</h3>
+      <p class="price">₹499</p>
+      <button onclick="orderProduct('Purse Collection')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Key Chain">
+      <h3>Key Chains</h3>
+      <p class="price">₹99</p>
+      <button onclick="orderProduct('Key Chains')">Order Now</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="container">
+  <h2 class="center">Place Your Order</h2>
+  <div class="order-form">
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="text" id="phone" placeholder="Phone Number">
+    <textarea id="details" placeholder="Product Name & Address"></textarea>
+    <button onclick="submitOrder()">Submit Order</button>
+  </div>
+</section>
+
+<section class="container center">
+  <h2>Online Payment</h2>
+  <p>Scan & Pay via UPI</p>
+  <img src="https://via.placeholder.com/200" alt="QR Code">
+  <p><strong>UPI ID:</strong> yourupi@bank</p>
+</section>
+
+<footer>
+  <p>© 2026 AV Brothers Traders. All Rights Reserved.</p>
+</footer>
+
+<script>
+function orderProduct(product) {
+  document.getElementById('details').value = product;
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+function submitOrder() {
+  var name = document.getElementById('name').value;
+  var phone = document.getElementById('phone').value;
+  var details = document.getElementById('details').value;
+
+  if(name === '' || phone === '' || details === '') {
+    alert('Please fill all details');
+    return;
+  }
+
+  var message = `Hello AV Brothers Traders,%0AName: ${name}%0APhone: ${phone}%0AOrder: ${details}`;
+  window.open(`https://wa.me/919999999999?text=${message}`, '_blank');
+}
+</script>
+
+</body>
+</html>
